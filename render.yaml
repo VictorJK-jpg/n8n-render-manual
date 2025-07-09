@@ -2,7 +2,7 @@ services:
   - type: web
     name: n8n
     env: docker
-    repo: https://github.com/VictorJK-jpg/n8n-render-manual
+    repo: https://github.com/VictorJK-jpg/n8n-render-manual # Your correct repo URL
     buildCommand: ""
     startCommand: "n8n"
     healthCheckPath: /healthz
@@ -45,6 +45,5 @@ services:
   - type: pserv
     name: n8n-db
     plan: free
-    database: # This 'database' block is correctly indented
-      name: n8n
-      ipAllowList: []
+    databaseName: n8n # Corrected placement
+    ipAllowList: []   # Corrected placement
