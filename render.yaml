@@ -2,9 +2,9 @@ services:
   - type: web
     name: n8n
     env: docker
-    repo: https://github.com/VictorJK-jpg/n8n-render-manual # Your correct repo URL
+    repo: https://https://github.com/VictorJK-jpg/n8n-render-manual # Your correct repo URL
     buildCommand: ""
-    # REMOVED: startCommand: "n8n"  <-- Remove this line
+    # Make sure 'startCommand' is NOT here for the web service
     healthCheckPath: /healthz
     plan: free
     envVars:
@@ -45,6 +45,5 @@ services:
   - type: pserv
     name: n8n-db
     plan: free
-    # REMOVED: databaseName: n8n  <-- These were already removed, good!
-    # REMOVED: ipAllowList: []   <-- These were already removed, good!
-    # Ensure no 'runtime' or 'startCommand' here for pserv type
+    # IMPORTANT: Ensure NO 'runtime' or 'startCommand' lines are present here.
+    # The pserv type is a managed service and does not take these parameters.
