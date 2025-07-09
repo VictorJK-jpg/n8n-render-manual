@@ -1,16 +1,17 @@
 services:
   - type: web
-    name: n8n
-    env: docker
-    repo: VictorJK-jpg/n8n-render-manual # CORRECTED: Removed https://
-    buildCommand: ""
-    healthCheckPath: /healthz
-    plan: free
+    name: n8n # Name of your n8n web service
+    plan: free # Use the free web service plan
+    runtime: image # THIS IS THE KEY CHANGE: Tells Render to use a pre-built Docker image
+    image:
+      url: docker.io/n8nio/n8n:latest # Specifies the official n8n Docker image
+    # No buildCommand, no startCommand, no repo needed when using runtime: image
+    healthCheckPath: /healthz # Good practice for health checks
     envVars:
       - key: N8N_USERNAME
-        generateValue: true
+        generateValue: true # Render will generate a strong username
       - key: N8N_PASSWORD
-        generateValue: true
+        generateValue: true # Render will generate a strong password
       - key: DB_HOST
         fromDatabase:
           name: n8n-db
@@ -42,7 +43,7 @@ services:
       # - key: N8N_EMAIL_SMTP_PASS
       #   value: your_app_password # Use an app password if 2FA is on
   - type: pserv
-    name: n8n-db
-    plan: free
-    # IMPORTANT: No other properties like databaseName, ipAllowList, runtime, or startCommand
-    # should be here for a pserv type in a blueprint.
+    name: n8n-db # Name of your PostgreSQL database service
+    plan: free # Use the free PostgreSQL plan
+    # As per documentation, no other properties like databaseName, ipAllowList, runtime, or startCommand
+    # are needed here for a pserv type in a blueprint. Render handles these implicitly.
