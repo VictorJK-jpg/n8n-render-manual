@@ -2,7 +2,7 @@ services:
   - type: web
     name: n8n
     env: docker
-    repo: https://github.com/VictorJK-jpg/n8n-render-manual.git
+    repo: https://github.com/VictorJK-jpg/n8n-render-manual.git # Your correct repo URL
     buildCommand: ""
     startCommand: "n8n"
     healthCheckPath: /healthz
@@ -35,5 +35,7 @@ services:
   - type: pserv
     name: n8n-db
     plan: free
-    databaseName: n8n
-    ipAllowList: []
+    # These properties should be nested under a 'database' block
+    database: # <--- ADD THIS LINE
+      name: n8n # <--- INDENT THIS
+      ipAllowList: [] # <--- INDENT THIS
