@@ -2,9 +2,8 @@ services:
   - type: web
     name: n8n
     env: docker
-    repo: https://https://github.com/VictorJK-jpg/n8n-render-manual # Your correct repo URL
+    repo: VictorJK-jpg/n8n-render-manual # CORRECTED: Removed https://
     buildCommand: ""
-    # Make sure 'startCommand' is NOT here for the web service
     healthCheckPath: /healthz
     plan: free
     envVars:
@@ -45,5 +44,5 @@ services:
   - type: pserv
     name: n8n-db
     plan: free
-    # IMPORTANT: Ensure NO 'runtime' or 'startCommand' lines are present here.
-    # The pserv type is a managed service and does not take these parameters.
+    # IMPORTANT: No other properties like databaseName, ipAllowList, runtime, or startCommand
+    # should be here for a pserv type in a blueprint.
